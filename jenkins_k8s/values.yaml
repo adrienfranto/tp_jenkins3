@@ -1,7 +1,7 @@
 # Custom Jenkins Helm configuration values.yaml
 # Modified for DevOps Mini-Project requirements
 
-master:
+controller:
   adminUser: "admin"
   adminPassword: "adminpassword123"
   
