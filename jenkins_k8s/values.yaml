@@ -1,0 +1,30 @@
+# Custom Jenkins Helm configuration values.yaml
+# Modified for DevOps Mini-Project requirements
+
+master:
+  adminUser: "admin"
+  adminPassword: "adminpassword123"
+  
+  serviceType: NodePort
+  nodePort: 32000
+
+  # Active plugins required for pipeline and Kubernetes agent
+  installPlugins:
+    - kubernetes:3831.vc6a_f2b_d07a_06
+    - workflow-aggregator:596.v8c21c963d92d
+    - git:5.2.1
+    - blueocean:1.27.10
+
+  # CPU/Memory configurations
+  resources:
+    limits:
+      cpu: "2000m"
+      memory: "4096Mi"
+    requests:
+      cpu: "1000m"
+      memory: "2048Mi"
+
+agent:
+  enabled: true
+  image: "jenkins/inbound-agent"
+  tag: "latest"
