@@ -2,8 +2,9 @@
 # Modified for DevOps Mini-Project requirements
 
 controller:
-  adminUser: "admin"
-  adminPassword: "adminpassword123"
+  admin:
+    username: "admin"
+    password: "adminpassword123"
   
   serviceType: NodePort
   nodePort: 32000
