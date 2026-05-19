@@ -15,6 +15,7 @@ controller:
     - workflow-aggregator:latest
     - git:latest
     - blueocean:latest
+    - configuration-as-code:latest
 
   # CPU/Memory configurations
   resources:
@@ -26,6 +27,7 @@ controller:
       memory: "2048Mi"
 
   JCasC:
+    enabled: true
     defaultConfig: true
     configScripts:
       kubernetes-cloud: |
