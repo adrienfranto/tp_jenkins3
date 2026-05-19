@@ -57,8 +57,8 @@ spec:
       steps { 
         container('docker') { 
           dir('flask_app') {
-            sh "docker build -t localhost:4000/pythontest:latest ." 
-            // sh "docker push localhost:4000/pythontest:latest" 
+            sh "docker build -t gcr.io/project-f3cc5de9-ac6f-4df9-88a/pythontest:latest ." 
+            sh "docker push gcr.io/project-f3cc5de9-ac6f-4df9-88a/pythontest:latest" 
           }
         } 
       } 
