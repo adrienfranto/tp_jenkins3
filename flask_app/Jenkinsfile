@@ -57,8 +57,11 @@ spec:
       steps { 
         container('docker') { 
           dir('flask_app') {
-            sh "docker build -t localhost:4000/pythontest:latest ." 
-            // sh "docker push localhost:4000/pythontest:latest" 
+            withCredentials([usernamePassword(credentialsId: 'dockerhubcreds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+              sh "docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}"
+              sh "docker build -t ${DOCKER_USER}/pythontest:latest ." 
+              sh "docker push ${DOCKER_USER}/pythontest:latest" 
+            }
           }
         } 
       } 
@@ -68,8 +71,11 @@ spec:
       steps { 
         container('kubectl') { 
           dir('flask_app') {
-            sh "kubectl apply -f ./kubernetes/deployment.yaml" 
-            sh "kubectl apply -f ./kubernetes/service.yaml" 
+            withCredentials([usernamePassword(credentialsId: 'dockerhubcreds', usernameVariable: 'DOCKER_USER', passwordVariable: '')]) {
+              sh "sed -i 's|localhost:4000/pythontest:latest|docker.io/${DOCKER_USER}/pythontest:latest|g' ./kubernetes/deployment.yaml"
+              sh "kubectl apply -f ./kubernetes/deployment.yaml" 
+              sh "kubectl apply -f ./kubernetes/service.yaml" 
+            }
           }
         } 
       } 
