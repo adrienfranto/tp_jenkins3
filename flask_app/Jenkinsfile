@@ -57,12 +57,8 @@ spec:
       steps { 
         container('docker') { 
           dir('flask_app') {
-            sh 'docker build -t gcr.io/project-f3cc5de9-ac6f-4df9-88a/pythontest:latest .' 
-            sh '''
-              ACCESS_TOKEN=$(wget -qO- --header="Metadata-Flavor: Google" http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token | sed -n 's/.*"access_token":"\\([^"]*\\)".*/\\1/p')
-              echo "$ACCESS_TOKEN" | docker login -u oauth2accesstoken --password-stdin https://gcr.io
-              docker push gcr.io/project-f3cc5de9-ac6f-4df9-88a/pythontest:latest
-            '''
+            sh "docker build -t localhost:4000/pythontest:latest ." 
+            // sh "docker push localhost:4000/pythontest:latest" 
           }
         } 
       } 
