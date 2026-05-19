@@ -25,6 +25,18 @@ controller:
       cpu: "1000m"
       memory: "2048Mi"
 
+  JCasC:
+    defaultConfig: true
+    configScripts:
+      kubernetes-cloud: |
+        jenkins:
+          clouds:
+            - kubernetes:
+                name: "kubernetes"
+                serverUrl: "https://kubernetes.default"
+                namespace: "jenkins"
+                jenkinsUrl: "http://jenkins.jenkins.svc.cluster.local:8080"
+
 agent:
   enabled: true
   image:
