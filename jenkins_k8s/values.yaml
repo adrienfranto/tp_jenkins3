@@ -11,10 +11,10 @@ controller:
 
   # Active plugins required for pipeline and Kubernetes agent
   installPlugins:
-    - kubernetes:3831.vc6a_f2b_d07a_06
-    - workflow-aggregator:596.v8c21c963d92d
-    - git:5.2.1
-    - blueocean:1.27.10
+    - kubernetes:latest
+    - workflow-aggregator:latest
+    - git:latest
+    - blueocean:latest
 
   # CPU/Memory configurations
   resources:
